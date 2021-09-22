@@ -1,0 +1,124 @@
+<mat-card>
+  <mat-card-title>LOAN ELIGIBILITY CALCULATOR</mat-card-title>
+  <mat-card-subtitle></mat-card-subtitle>
+  <mat-card-content>
+    <div class="form-container">
+      <form id="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="form-element" appearance="fill">
+          <mat-label>Monthly Income</mat-label>
+          <input
+            #monthlyIncome
+            matInput
+            formControlName="monthlyIncome"
+            ngxMaskCurrencyMask
+            [precision]="0"
+            decimalSeparator=","
+            thousandSeparator="."
+          />
+          <mat-error *ngIf="userForm.get('monthlyIncome')?.errors?.required"
+            >Enter Monthly Income</mat-error
+          >
+          <mat-error *ngIf="userForm.get('monthlyIncome')?.errors?.min"
+            >Minimum value should be 500000</mat-error
+          >
+          <mat-error *ngIf="userForm.get('monthlyIncome')?.errors?.pattern"
+            >Only numbers allowed</mat-error
+          >
+          <mat-error
+            *ngIf="userForm.get('monthlyIncome')?.errors?.serverError"
+            >{{ userForm.get("monthlyIncome")?.errors?.serverError }}</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="form-element" appearance="fill">
+          <mat-label>Requested Amount</mat-label>
+          <input
+            matInput
+            formControlName="requestedAmount"
+            ngxMaskCurrencyMask
+            [precision]="0"
+            decimalSeparator=","
+            thousandSeparator="."
+          />
+          <mat-error *ngIf="userForm.get('requestedAmount')?.errors?.required"
+            >Enter Requested Amount</mat-error
+          >
+          <mat-error *ngIf="userForm.get('requestedAmount')?.errors?.min"
+            >Minimum value should be 20000000</mat-error
+          >
+          <mat-error *ngIf="userForm.get('requestedAmount')?.errors?.pattern"
+            >Only numbers allowed</mat-error
+          >
+          <mat-error
+            *ngIf="userForm.get('requestedAmount')?.errors?.serverError"
+            >{{
+              userForm.get("requestedAmount")?.errors?.serverError
+            }}</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="form-element" appearance="fill">
+          <mat-label>Loan Term</mat-label>
+          <input matInput formControlName="loanTerm" />
+          <mat-error *ngIf="userForm.get('loanTerm')?.errors?.required"
+            >Enter Loan Term</mat-error
+          >
+          <mat-error *ngIf="userForm.get('loanTerm')?.errors?.min"
+            >Minimum Loan term is 36 months</mat-error
+          >
+          <mat-error *ngIf="userForm.get('loanTerm')?.errors?.max"
+            >Maximum Loan term is 360 months</mat-error
+          >
+          <mat-error *ngIf="userForm.get('loanTerm')?.errors?.pattern"
+            >Only numbers allowed</mat-error
+          >
+          <mat-error *ngIf="userForm.get('loanTerm')?.errors?.serverError">{{
+            userForm.get("loanTerm")?.errors?.serverError
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element" appearance="fill">
+          <mat-label>Children</mat-label>
+          <mat-select formControlName="children" id="children">
+            <mat-option
+              *ngFor="let option of childrenOptions"
+              [value]="option.value"
+              >{{ option.label }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="userForm.get('children')?.errors?.required"
+            >Please choose an option</mat-error
+          >
+          <mat-error *ngIf="userForm.get('children')?.errors?.serverError">{{
+            userForm.get("children")?.errors?.serverError
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element" appearance="fill">
+          <mat-label>Co-Applicant</mat-label>
+          <mat-select formControlName="coapplicant">
+            <mat-option
+              *ngFor="let option of coApplicantOptions"
+              [value]="option.value"
+              >{{ option.label }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="userForm.get('coapplicant')?.errors?.required"
+            >Please choose an option</mat-error
+          >
+          <mat-error *ngIf="userForm.get('coapplicant')?.errors?.serverError">{{
+            userForm.get("coapplicant")?.errors?.serverError
+          }}</mat-error>
+        </mat-form-field>
+
+        <div class="action-btn">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="submit-btn"
+            [disabled]="userForm.invalid"
+          >
+            Check Eligibility
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

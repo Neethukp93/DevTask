@@ -1,0 +1,18 @@
+.form-container {
+  width: 750px;
+  margin: auto;
+}
+mat-card-title {
+  text-align: center;
+}
+.action-btn {
+  text-align: center;
+  .submit-btn {
+    width: 200px;
+    height: 45px;
+  }
+}
+mat-form-field {
+  display: block;
+  padding: 10px 0px;
+}

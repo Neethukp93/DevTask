@@ -1,0 +1,6 @@
+export const CHILDREN_ARR = ['NONE', 'SINGLE', 'MULTIPLE'];
+export const COAPPLICANT_ARR = [
+  'NONE',
+  'SINGLE BORROWER',
+  'MULTIPLE BORROWERS',
+];

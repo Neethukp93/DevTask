@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<mat-dialog-content>
+  <span [innerHTML]="message"></span>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">
+    {{ buttonText }}
+  </button>
+</mat-dialog-actions>
